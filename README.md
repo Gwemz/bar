@@ -24,22 +24,19 @@ echo '# Hello VuePress' > docs/README.md
 
 项目目录结构：
 
-├─ docs
-│  ├─ .vuepress
-│  │  ├─ config.js
-│  │  └─ public
-│  │  │  └─ hero.png
-│  ├─ bar
-│  │  ├─ README.md
-│  │  ├─ four.md
-│  │  └─ four.md
-│  ├─ foo
-│  │  ├─ README.md
-│  │  ├─ one.md
-│  │  └─ two.md
-│  ├─ README.md
-└─ package.json
-
+tree -| docs
+tree -| docs -| .vuepress
+tres -| docs -| .vuepress > config.js
+tres -| docs -| .vuepress -| public
+tres -| docs -| .vuepress -| public > hero.png
+tres -| docs -| foo
+tres -| docs -| foo > README.md
+tres -| docs -| foo > one.md
+tres -| docs -| foo > two.md
+tres -| docs -| bar
+tres -| docs -| bar > README.md
+tres -| docs -| bar > three.md
+tres -| docs -| bar > four.md
 
 #### 运行命令
 
@@ -61,25 +58,11 @@ module.exports = {
             { text: 'bar', link: '/bar/' }
         ],
         //侧边栏
-        sidebar: {
-            sidebarDepth: 2,
-            '/foo/': [
-                '',
-                'one',
-                'two'
-            ],
-
-            '/bar/': [
-                '',
-                'three',
-                'four'
-            ],
-            '/': [
-                '',
-                'contact',
-                'about'
-            ]
-        }
+        sidebar: [
+            '/',
+            '/page-a',
+            ['/page-b', 'Explicit link text']
+        ]
     }
 }
 ```
@@ -105,6 +88,8 @@ footer: MIT Licensed | Copyright © 2018-present Evan You
 
 #### 关于部署github
 
+因为`yarn docs:build`命令执行后，静态目录重新生成，故而需要每次生成git提交。。。（后续再研究下）
+
 目前的做法是，将github仓库git克隆到本地，添加到项目的静态资源目录，执行相关命令，提交（表示官方文档示例没看明白）
 
-在通过`yarn docs:dev`启动本地服务时，遇到了更新不及时的情况，可能是不太稳定，所写并非所得，故而需要那行等待会儿。。。 
+在通过`yarn docs:dev`启动本地服务时，遇到了更新不及时的情况，可能是不太稳定，所写并非所得，故而需要耐心等待会儿。。。 
